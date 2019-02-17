@@ -7,9 +7,9 @@ import { List, Card, Icon, Input, Tag, Checkbox } from "antd";
 const CheckboxGroup = Checkbox.Group;
 
 const App = () => {
-  const [services, setServices] = useState(servicesData);
+  const [services] = useState(servicesData);
+  const [categories] = useState(categoriesData);
   const [filteredServices, setFilteredServices] = useState(services);
-  const [categories, setCategories] = useState(categoriesData);
   const [filterValue, setFilterValue] = useState("");
   const [categoryFilters, setCategoryFilters] = useState([]);
 
@@ -29,6 +29,10 @@ const App = () => {
     setFilteredServices(filteredServices);
   };
 
+  const handleCategoryFilterChange = filters => {
+    setCategoryFilters(filters);
+  };
+
   return (
     <div className="services">
       <h1>Request Service or Report a Problem</h1>
@@ -36,7 +40,7 @@ const App = () => {
         <CheckboxGroup
           options={categories}
           defaultValue={[]}
-          onChange={setCategoryFilters}
+          onChange={handleCategoryFilterChange}
         />
       </section>
       <section className="section">
