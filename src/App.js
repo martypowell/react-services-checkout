@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import servicesData from "./data/services.json";
-import { List, Card, Icon, Input, Tag } from "antd";
+import categoriesData from "./data/categories.json";
+import { List, Card, Icon, Input, Tag, Checkbox } from "antd";
+
+const CheckboxGroup = Checkbox.Group;
 
 const App = () => {
   const [services, setServices] = useState(servicesData);
   const [filteredServices, setFilteredServices] = useState(services);
+  const [categories, setCategories] = useState(categoriesData);
   const [filterValue, setFilterValue] = useState("");
+  const [categoryFilters, setCategoryFilters] = useState([]);
 
   const handleInputFilterChange = changeEvent => {
     const { value } = changeEvent.currentTarget;
@@ -27,6 +32,17 @@ const App = () => {
   return (
     <div className="services">
       <h1>Request Service or Report a Problem</h1>
+      Applied Filters:
+      {categoryFilters.map(filter => (
+        <p>{filter}</p>
+      ))}
+      <section className="section">
+        <CheckboxGroup
+          options={categories}
+          defaultValue={[]}
+          onChange={setCategoryFilters}
+        />
+      </section>
       <section className="section">
         <Input
           size="large"
