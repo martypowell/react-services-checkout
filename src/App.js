@@ -17,32 +17,40 @@ const App = () => {
     setFilteredServices(filteredServices);
   };
 
+  const Filter = () => (
+    <Input
+      size="large"
+      placeholder="Filter services by name or category..."
+      onChange={handleInputFilterChange}
+    />
+  );
+
+  const Services = () => (
+    <List
+      grid={{ gutter: 16, column: 4 }}
+      dataSource={filteredServices}
+      renderItem={service => (
+        <List.Item>
+          <Card
+            title={service.description}
+            extra={service.isMostPopularService && <Icon type="star" />}
+          >
+            <p>Content</p>
+            <span>{service.categories.join(", ")}</span>
+          </Card>
+        </List.Item>
+      )}
+    />
+  );
+
   return (
     <div className="services">
       <h1>Request Service or Report a Problem</h1>
       <section class="section">
-        <Input
-          size="large"
-          placeholder="Filter services by name or category..."
-          onChange={handleInputFilterChange}
-        />
+        <Filter />
       </section>
       <section class="section">
-        <List
-          grid={{ gutter: 16, column: 4 }}
-          dataSource={filteredServices}
-          renderItem={service => (
-            <List.Item>
-              <Card
-                title={service.description}
-                extra={service.isMostPopularService && <Icon type="star" />}
-              >
-                <p>Content</p>
-                <span>{service.categories.join(", ")}</span>
-              </Card>
-            </List.Item>
-          )}
-        />
+        <Services />
       </section>
     </div>
   );
