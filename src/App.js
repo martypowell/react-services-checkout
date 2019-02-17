@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import servicesData from "./data/services.json";
 import { List, Card, Icon, Input } from "antd";
@@ -10,7 +10,6 @@ const App = () => {
 
   const handleInputFilterChange = changeEvent => {
     const { value } = changeEvent.currentTarget;
-
     const filterVal = value ? value.toLowerCase() : "";
     const filteredServices = services.filter(service => {
       var hasDescriptionMatch =
