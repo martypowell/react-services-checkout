@@ -32,10 +32,6 @@ const App = () => {
   return (
     <div className="services">
       <h1>Request Service or Report a Problem</h1>
-      Applied Filters:
-      {categoryFilters.map(filter => (
-        <p>{filter}</p>
-      ))}
       <section className="section">
         <CheckboxGroup
           options={categories}
