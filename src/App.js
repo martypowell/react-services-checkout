@@ -8,25 +8,29 @@ const App = () => {
   return (
     <div className="services">
       <h1>Request Service or Report a Problem</h1>
-      <Input
-        size="large"
-        placeholder="Filter services by name or category..."
-      />
-      <List
-        grid={{ gutter: 16, column: 4 }}
-        dataSource={services}
-        renderItem={service => (
-          <List.Item>
-            <Card
-              title={service.description}
-              extra={service.isMostPopularService && <Icon type="star" />}
-            >
-              <p>Content</p>
-              <span>{service.categories.join(", ")}</span>
-            </Card>
-          </List.Item>
-        )}
-      />
+      <section class="section">
+        <Input
+          size="large"
+          placeholder="Filter services by name or category..."
+        />
+      </section>
+      <section class="section">
+        <List
+          grid={{ gutter: 16, column: 4 }}
+          dataSource={services}
+          renderItem={service => (
+            <List.Item>
+              <Card
+                title={service.description}
+                extra={service.isMostPopularService && <Icon type="star" />}
+              >
+                <p>Content</p>
+                <span>{service.categories.join(", ")}</span>
+              </Card>
+            </List.Item>
+          )}
+        />
+      </section>
     </div>
   );
 };
