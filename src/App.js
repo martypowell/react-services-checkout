@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import servicesData from "./data/services.json";
-import { List, Card, Icon, Input } from "antd";
+import { List, Card, Icon, Input, Tag } from "antd";
 
 const App = () => {
   const [services, setServices] = useState(servicesData);
@@ -54,7 +54,9 @@ const App = () => {
                 extra={service.isMostPopularService && <Icon type="star" />}
               >
                 <p>Content</p>
-                <span>{service.categories.join(", ")}</span>
+                {service.categories.map((category, categoryIndex) => (
+                  <Tag key={categoryIndex}>{category}</Tag>
+                ))}
               </Card>
             </List.Item>
           )}
