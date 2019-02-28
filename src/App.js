@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import categoriesData from './data/categories.json';
+import { fetchServices } from './shared/Services';
 import { List, Card, Icon, Input, Tag, Checkbox } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
@@ -12,22 +13,11 @@ const App = () => {
     const [filterValue, setFilterValue] = useState('');
     const [categoryFilters, setCategoryFilters] = useState([]);
 
-    const fetchServices = async () => {
-        fetch('//localhost:60850/api/services')
-            .then(response => {
-                return response
-                    ? response.json()
-                    : 'Something went wrong getting the response';
-            })
-            .then(function(services) {
-                setServices(services);
-                setFilteredServices(services);
-            })
-            .catch(console.log);
-    };
-
     useEffect(() => {
-        fetchServices();
+        fetchServices(services => {
+            setServices(services);
+            setFilteredServices(services);
+        });
     }, []);
 
     const handleInputFilterChange = changeEvent => {
