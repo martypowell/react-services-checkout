@@ -11,7 +11,7 @@ const ServicesList = () => {
 
     return (
         <List
-            className="demo-loadmore-list"
+            className="admin-services-list"
             // loading={initLoading}
             itemLayout="horizontal"
             // loadMore={loadMore}
